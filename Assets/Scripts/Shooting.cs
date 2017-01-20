@@ -14,12 +14,17 @@ public class Shooting : Singleton<Shooting>
     [SerializeField]
     GameObject bulletPrefab;
     [SerializeField]
-    float bulletTime = 3f;
+    float maxBulletTime = 3f;
+    float currentBulletTime;
+    bool isHoldingFire = false;
+    [SerializeField]
+    float bulletTimeIncrease = 2f;
     [SerializeField]
     float bulletForce = 200f;
     [Header("Shooting")]
     [SerializeField]
     float reloadTime = 1f;
+    float currentReloadTime = 0f;
     bool reloading = false;
     [Header("Turret")]
     [SerializeField]
@@ -46,7 +51,7 @@ public class Shooting : Singleton<Shooting>
     {
         get
         {
-            return bulletTime;
+            return maxBulletTime;
         }
     }
 
@@ -58,31 +63,89 @@ public class Shooting : Singleton<Shooting>
         }
     }
 
-    void Start()
+    public float CurrentBulletTime
     {
-        MouseInputController.Instance.RegisterOnLeftMouseClickListener(Shoot);
+        get
+        {
+            return currentBulletTime;
+        }
     }
 
-    void Shoot()
+    public float CurrentReloadTime
+    {
+        get
+        {
+            return currentReloadTime;
+        }
+    }
+
+    public float ReloadTime
+    {
+        get
+        {
+            return reloadTime;
+        }
+    }
+
+    public bool Reloading
+    {
+        get
+        {
+            return reloading;
+        }
+    }
+
+    void Start()
+    {
+        MouseInputController.Instance.RegisterOnLeftMouseClickListener(HoldShoot);
+        MouseInputController.Instance.RegisterOnLeftMouseReleaseListener(ReleaseShoot);
+    }
+
+    void HoldShoot()
     {
         if (reloading)
+        {            
             return;
-        StopAllCoroutines();
-        reloading = true;
-        StartCoroutine("Reload");
-        Vector2 empPos = MouseInputController.Instance.GetMouseScreenCoords();
-        Instantiate(bulletPrefab, muzzle.position, transform.rotation);
-
+        }
+            
+        isHoldingFire = true;
         
     }
 
-    IEnumerator Reload()
+    void ReleaseShoot()
     {
-        yield return new WaitForSeconds(reloadTime);
-        reloading = false;
+        if (!isHoldingFire)
+            return;
+        isHoldingFire = false;        
+        StopAllCoroutines();
+        reloading = true;
+        BulletLogic bl =
+            (Instantiate(bulletPrefab, muzzle.position, transform.rotation) as GameObject).
+            GetComponent<BulletLogic>();
+        bl.Init(currentBulletTime);
+        currentBulletTime = 0;
     }
 
     void Update () {
+
+        if (reloading)
+        {
+            currentReloadTime += Time.deltaTime;
+            if (currentReloadTime > reloadTime)
+            {
+                currentReloadTime = 0;
+                reloading = false;
+            }
+        }
+
+        if (isHoldingFire)
+        {
+            currentBulletTime += Time.deltaTime * bulletTimeIncrease;
+            if(currentBulletTime > maxBulletTime)
+            {
+                currentBulletTime = maxBulletTime;
+            }
+        }
         
     }
 }

@@ -8,11 +8,11 @@ public class MouseInputController : Singleton<MouseInputController> {
     protected MouseInputController() { }
 
     UnityEvent onLeftMouseClick;
-    
+    UnityEvent onLeftMouseRelease;
+
     void Start()
     {
-        if (onLeftMouseClick == null)
-            onLeftMouseClick = new UnityEvent();
+        
     }
 
     void Update()
@@ -21,10 +21,23 @@ public class MouseInputController : Singleton<MouseInputController> {
         {
             onLeftMouseClick.Invoke();
         }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            onLeftMouseRelease.Invoke();
+        }
+    }
+
+    public void RegisterOnLeftMouseReleaseListener(UnityAction action)
+    {
+        if (onLeftMouseRelease == null)
+            onLeftMouseRelease = new UnityEvent();
+        onLeftMouseRelease.AddListener(action);
     }
 
     public void RegisterOnLeftMouseClickListener(UnityAction action)
     {
+        if (onLeftMouseClick == null)
+            onLeftMouseClick = new UnityEvent();
         onLeftMouseClick.AddListener(action);
     }
 
