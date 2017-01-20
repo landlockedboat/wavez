@@ -9,6 +9,8 @@ public class EmpController : Singleton<EmpController> {
 
     public void NewEmp(Vector2 origin, float force, float rad) {
         foreach (GameObject obj in PhysicsController.Instance.physicsObjects){
+            if(Vector2.Distance(origin, obj.transform.position) < rad)
+                obj.SendMessage("Stun", SendMessageOptions.DontRequireReceiver);
 
             Rigidbody rig = obj.GetComponent<Rigidbody>();
 
@@ -17,17 +19,7 @@ public class EmpController : Singleton<EmpController> {
                 continue;
             }
 
-            Instantiate(empPrefab, origin, Quaternion.identity);
             rig.AddExplosionForce(force, origin, rad);
         }
     }
-
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

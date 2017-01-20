@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour {
-    [SerializeField]
-    float speed = 5;
-    [SerializeField]
-    float stunDuration = 2;
-    bool paused = false;
+public class LookAtPlayer : MonoBehaviour {
 
+    bool paused = false;
+	
 	void Update () {
         if (paused)
             return;
         Vector2 playerPos = PlayerController.Instance.PlayerPos;
-        transform.position = Vector2.MoveTowards(transform.position, playerPos, speed * Time.deltaTime);
-    }
+        transform.LookAt(playerPos);
+	}
 
     public void PauseBehaviour()
     {
@@ -25,6 +22,4 @@ public class FollowPlayer : MonoBehaviour {
     {
         paused = false;
     }
-
-
 }
