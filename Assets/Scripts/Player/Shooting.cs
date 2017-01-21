@@ -93,19 +93,26 @@ public class Shooting : Singleton<Shooting>
 
     void HoldShoot()
     {
+        isHoldingFire = true;
+        currentBulletForce = 0;
         if (reloading)
         {            
             return;
         }
             
-        isHoldingFire = true;
+        
         
     }
 
     void ReleaseShoot()
     {
-        if (!isHoldingFire)
-            return;
+        if (!isHoldingFire || reloading)
+        {
+            isHoldingFire = false;
+            currentBulletForce = 0;
+            return;            
+        }
+            
         isHoldingFire = false;        
         StopAllCoroutines();
         reloading = true;
@@ -128,7 +135,7 @@ public class Shooting : Singleton<Shooting>
             }
         }
 
-        if (isHoldingFire)
+        if (isHoldingFire && !reloading)
         {
             currentBulletForce += Time.deltaTime * bulletTimeIncrease;
             if(currentBulletForce > maxBulletForce)

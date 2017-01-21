@@ -24,6 +24,11 @@ public class LevelGen : MonoBehaviour {
     int asteroidsAmmount = 3;
     [SerializeField]
     float minSpawnTime = 1f;
+    [Header("B0ss")]
+    [SerializeField]
+    int spawnsTillBoss = 3;
+    [SerializeField]
+    GameObject b0ss;
 
     Vector2 prevSpawn;
     float currentX;
@@ -69,6 +74,15 @@ public class LevelGen : MonoBehaviour {
         }
     }
 
+    void SpawnBoss()
+    {
+        Debug.Log("B0ss");
+        currentX = transform.position.x;
+        currentY = transform.position.y;
+        Vector2 pos = GenerateRandomPos();
+        Instantiate(b0ss, pos, Quaternion.identity);
+    }
+
     void SpawnEnemyTypeAt(Vector2 pos, int type)
     {
         Instantiate(enemies[type], pos, Quaternion.identity);
@@ -85,6 +99,13 @@ public class LevelGen : MonoBehaviour {
         if(Vector2.Distance(transform.position, prevSpawn) > genDist)
         {
             prevSpawn = transform.position;
+            --spawnsTillBoss;
+            if (spawnsTillBoss <= 0)
+            {
+                SpawnBoss();
+                spawnsTillBoss = 100;
+            }
+                
             Spawn();
         }
     }
