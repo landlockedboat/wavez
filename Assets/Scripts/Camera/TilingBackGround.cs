@@ -9,6 +9,8 @@ public class TilingBackGround : MonoBehaviour {
     GameObject bgPrefab;
     [SerializeField]
     float bgSize = 20;
+    [SerializeField]
+    float bgDepth = 10;
 
     List<GameObject> backs;
 
@@ -26,7 +28,7 @@ public class TilingBackGround : MonoBehaviour {
         }
         backs = new List<GameObject>();
 
-        lastPos.z = 2;        
+        lastPos.z = bgDepth;        
         //top-right
         lastPos.y += bgSize;
         lastPos.x += bgSize;

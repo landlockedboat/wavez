@@ -12,14 +12,28 @@ public class SkullAnim : MonoBehaviour {
 
     private Animator anim;
     private AudioSource audio;
+
+    bool ded = false;
+
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
         audio = GetComponent<AudioSource>();
 	}
+
+    public void Kill()
+    {
+        ded = true;
+        anim.SetBool("Laugh", false);
+        MeshRenderer m = eyes.GetComponent<MeshRenderer>();
+        m.enabled = false;
+        audio.Stop();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (ded)
+            return;
         t += 1.0f * Time.deltaTime;
         if (t > timeBetweenLaugh && laughing == false)
         {
