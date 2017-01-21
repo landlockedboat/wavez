@@ -26,18 +26,39 @@ public class TilingBackGround : MonoBehaviour {
         }
         backs = new List<GameObject>();
 
-        lastPos.z = 1;
-        backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
+        lastPos.z = 2;        
+        //top-right
+        lastPos.y += bgSize;
         lastPos.x += bgSize;
         backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
-        lastPos.x -= bgSize * 2;
+        //right
+        lastPos.y -= bgSize;
         backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
+        //bot-right
+        lastPos.y -= bgSize;
+        backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
+        
+        //bot
+        lastPos.x -= bgSize;
+        backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
+
+        //bot-left
+        lastPos.x -= bgSize;
+        backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
+        //left
+        lastPos.y += bgSize;
+        backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
+        //top-left
+        lastPos.y += bgSize;
+        backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
+
+        //top
         lastPos.x += bgSize;
-        lastPos.y += bgSize;
         backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
-        lastPos.y -= bgSize * 2;
+
+        //center
+        lastPos.y -= bgSize;
         backs.Add(Instantiate(bgPrefab, lastPos, Quaternion.identity));
-        lastPos.y += bgSize;
     }
 	
 	void Update () {

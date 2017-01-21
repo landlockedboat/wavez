@@ -3,7 +3,7 @@
 public class LevelGen : MonoBehaviour {
     [Header("Generation")]
     [SerializeField]
-    GameObject enemyPrefab;
+    GameObject[] enemies;
 
     [SerializeField]
     GameObject[] asteroids;
@@ -57,7 +57,8 @@ public class LevelGen : MonoBehaviour {
         for (int i = 0; i < enemiesAmmount; i++)
         {
             Vector2 pos = GenerateRandomPos();
-            SpawnEnemyAt(pos);
+            int type = Random.Range(0, enemies.Length);
+            SpawnEnemyTypeAt(pos, type);
         }
 
         for (int i = 0; i < asteroidsAmmount; i++)
@@ -68,9 +69,9 @@ public class LevelGen : MonoBehaviour {
         }
     }
 
-    void SpawnEnemyAt(Vector2 pos)
+    void SpawnEnemyTypeAt(Vector2 pos, int type)
     {
-        Instantiate(enemyPrefab, pos, Quaternion.identity);
+        Instantiate(enemies[type], pos, Quaternion.identity);
     }
 
     void SpawnAsteroidTypeAt(Vector2 pos, int type)

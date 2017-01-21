@@ -17,7 +17,7 @@ public class EnemyShooting : MonoBehaviour {
     float bulletSpeed = 10f;
 
     [SerializeField]
-    Transform muzzle;
+    Transform[] muzzles;
     [SerializeField]
     GameObject bulletPrefab;
 
@@ -35,10 +35,15 @@ public class EnemyShooting : MonoBehaviour {
 
     void Shoot()
     {
-        GameObject bull = Instantiate(bulletPrefab, muzzle.position, transform.rotation) 
-            as GameObject;
-        EnemyBulletLogic ebl = bull.GetComponent<EnemyBulletLogic>();
-        ebl.Init(bulletSpeed, empRadius, empForce);
+        foreach(Transform tra in muzzles)
+        {
+            GameObject bull = Instantiate(bulletPrefab, tra.position, transform.rotation)
+                as GameObject;
+            EnemyBulletLogic ebl = bull.GetComponent<EnemyBulletLogic>();
+            ebl.Init(bulletSpeed, empRadius, empForce);
+        }
+        
+        
     }
 	
 	void Update () {

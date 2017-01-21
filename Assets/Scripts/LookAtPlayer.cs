@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour {
 
-	void Update () {
+    bool ded = false;
 
+    public void Kill()
+    {
+        ded = true;
+    }
+
+	void Update () {
+        if (ded)
+            return;
         Vector2 playerPos = PlayerController.Instance.PlayerPos;
         Vector2 actPos = transform.position;
 

@@ -6,8 +6,25 @@ public class EnemyHealth : MonoBehaviour {
     [SerializeField]
     int maxHealth = 2;
     int currentHealth;
-	// Use this for initialization
-	void Awake () {
+
+    public int MaxHealth
+    {
+        get
+        {
+            return maxHealth;
+        }
+    }
+
+    public int CurrentHealth
+    {
+        get
+        {
+            return currentHealth;
+        }
+    }
+
+    // Use this for initialization
+    void Awake () {
         currentHealth = maxHealth;
     }
 
