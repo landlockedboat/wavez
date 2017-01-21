@@ -5,12 +5,18 @@ using UnityEngine;
 public class LookAtPlayer : MonoBehaviour {
 
     bool paused = false;
+    [SerializeField]
+    float angSpeed = 6f;
 	
 	void Update () {
         if (paused)
             return;
         Vector2 playerPos = PlayerController.Instance.PlayerPos;
-        transform.LookAt(playerPos);
+        Vector2 fwd = transform.position + transform.forward;
+
+        Vector2 lookPos = Vector2.MoveTowards(fwd, playerPos, angSpeed * Time.deltaTime);
+
+        transform.LookAt(lookPos);
 	}
 
     public void PauseBehaviour()
