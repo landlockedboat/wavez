@@ -10,16 +10,16 @@ public class EnemyShooting : MonoBehaviour {
     float currentReloadTime = 0f;
     [Header("Bullet")]
     [SerializeField]
-    float empRadius = 5f;
+    protected float empRadius = 5f;
     [SerializeField]
-    float empForce = 300f;
+    protected float empForce = 300f;
     [SerializeField]
-    float bulletSpeed = 10f;
+    protected float bulletSpeed = 10f;
 
     [SerializeField]
-    Transform[] muzzles;
+    protected Transform[] muzzles;
     [SerializeField]
-    GameObject bulletPrefab;
+    protected GameObject bulletPrefab;
 
     bool isPaused = false;
 
@@ -33,7 +33,7 @@ public class EnemyShooting : MonoBehaviour {
         isPaused = false;
     }
 
-    void Shoot()
+    protected virtual void Shoot()
     {
         foreach(Transform tra in muzzles)
         {
