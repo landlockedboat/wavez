@@ -9,8 +9,6 @@ public class FollowPlayer : MonoBehaviour {
     float maxSpeed = 10;
     float startingSpeed;
     [SerializeField]
-    float stunDuration = 2;
-    [SerializeField]
     float speedInc = 2;
     bool paused = false;
     [SerializeField]

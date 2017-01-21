@@ -19,8 +19,6 @@ public class Shooting : Singleton<Shooting>
     bool isHoldingFire = false;
     [SerializeField]
     float bulletTimeIncrease = 2f;
-    [SerializeField]
-    float bulletForce = 200f;
     [Header("Shooting")]
     [SerializeField]
     float reloadTime = 1f;

@@ -4,8 +4,14 @@ public class LevelGen : MonoBehaviour {
     [Header("Generation")]
     [SerializeField]
     GameObject enemyPrefab;
+
     [SerializeField]
     GameObject[] asteroids;
+    [SerializeField]
+    float asteroidsMinScale = 1f;
+    [SerializeField]
+    float asteroidsMaxScale = 20f;
+
     [SerializeField]
     float genRadius = 5f;
     [SerializeField]
@@ -69,7 +75,8 @@ public class LevelGen : MonoBehaviour {
 
     void SpawnAsteroidTypeAt(Vector2 pos, int type)
     {
-        Instantiate(asteroids[type], pos, Quaternion.identity);
+        GameObject go = Instantiate(asteroids[type], pos, Random.rotation);
+        go.transform.localScale *= Random.Range(asteroidsMinScale, asteroidsMaxScale);
     }
 
     void CheckSpawn()
