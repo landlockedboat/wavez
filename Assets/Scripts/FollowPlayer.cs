@@ -13,6 +13,8 @@ public class FollowPlayer : MonoBehaviour {
     [SerializeField]
     float speedInc = 2;
     bool paused = false;
+    [SerializeField]
+    float stoppingDist = 20f;
 
     private void Awake()
     {
@@ -23,6 +25,8 @@ public class FollowPlayer : MonoBehaviour {
         if (paused)
             return;
         Vector2 playerPos = PlayerController.Instance.PlayerPos;
+        if (Vector2.Distance(transform.position, playerPos) <= stoppingDist)
+            return;
         speed += speedInc * Time.deltaTime;
         if (speed > maxSpeed)
             speed = maxSpeed;

@@ -7,10 +7,10 @@ public class EmpController : Singleton<EmpController> {
     [SerializeField]
     GameObject empPrefab;
 
-    public void NewEmp(Vector2 origin, float force, float rad) {
+    public void NewEmp(string message, Vector2 origin, float force, float rad) {
         foreach (GameObject obj in PhysicsController.Instance.physicsObjects){
-            if(Vector2.Distance(origin, obj.transform.position) < rad)
-                obj.SendMessage("Stun", SendMessageOptions.DontRequireReceiver);
+            if(message.Length != 0 && Vector2.Distance(origin, obj.transform.position) < rad)
+                obj.SendMessage(message, SendMessageOptions.DontRequireReceiver);
 
             Rigidbody rig = obj.GetComponent<Rigidbody>();
 

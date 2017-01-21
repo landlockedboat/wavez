@@ -14,8 +14,8 @@ public class Shooting : Singleton<Shooting>
     [SerializeField]
     GameObject bulletPrefab;
     [SerializeField]
-    float maxBulletTime = 3f;
-    float currentBulletTime;
+    float maxBulletForce = 3f;
+    float currentBulletForce;
     bool isHoldingFire = false;
     [SerializeField]
     float bulletTimeIncrease = 2f;
@@ -47,27 +47,19 @@ public class Shooting : Singleton<Shooting>
         }
     }
 
-    public float MaxBulletTime
+    public float MaxBulletForce
     {
         get
         {
-            return maxBulletTime;
+            return maxBulletForce;
         }
     }
 
-    public float BulletForce
+    public float CurrentBulletForce
     {
         get
         {
-            return bulletForce;
-        }
-    }
-
-    public float CurrentBulletTime
-    {
-        get
-        {
-            return currentBulletTime;
+            return currentBulletForce;
         }
     }
 
@@ -122,8 +114,8 @@ public class Shooting : Singleton<Shooting>
         BulletLogic bl =
             (Instantiate(bulletPrefab, muzzle.position, transform.rotation) as GameObject).
             GetComponent<BulletLogic>();
-        bl.Init(currentBulletTime);
-        currentBulletTime = 0;
+        bl.Init();
+        currentBulletForce = 0;
     }
 
     void Update () {
@@ -140,10 +132,10 @@ public class Shooting : Singleton<Shooting>
 
         if (isHoldingFire)
         {
-            currentBulletTime += Time.deltaTime * bulletTimeIncrease;
-            if(currentBulletTime > maxBulletTime)
+            currentBulletForce += Time.deltaTime * bulletTimeIncrease;
+            if(currentBulletForce > maxBulletForce)
             {
-                currentBulletTime = maxBulletTime;
+                currentBulletForce = maxBulletForce;
             }
         }
         

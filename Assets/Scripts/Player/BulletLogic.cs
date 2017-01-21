@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletLogic : MonoBehaviour {
@@ -8,10 +7,10 @@ public class BulletLogic : MonoBehaviour {
     bool collided = false;
     float bulletTime;
 
-	public void Init (float _bulletTime) {        
+	public void Init () {        
         rigidbody = GetComponent<Rigidbody>();
         bulletTime = 1;
-        rigidbody.AddForce(transform.right * Shooting.Instance.BulletForce * _bulletTime);
+        rigidbody.AddForce(transform.right * Shooting.Instance.CurrentBulletForce);
         StartCoroutine("Explode");
     }
 
@@ -27,7 +26,7 @@ public class BulletLogic : MonoBehaviour {
     IEnumerator Explode()
     {
         yield return new WaitForSeconds(bulletTime);
-        EmpController.Instance.NewEmp(transform.position, Shooting.Instance.EmpForce,
+        EmpController.Instance.NewEmp("Stun", transform.position, Shooting.Instance.EmpForce,
             Shooting.Instance.EmpRadius);
         Destroy(gameObject);
     }

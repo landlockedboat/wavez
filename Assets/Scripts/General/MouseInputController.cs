@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class MouseInputController : Singleton<MouseInputController> {
@@ -9,8 +7,6 @@ public class MouseInputController : Singleton<MouseInputController> {
 
     UnityEvent onLeftMouseClick;
     UnityEvent onLeftMouseRelease;
-    [SerializeField]
-    float cameraHeight;
 
     void Start()
     {
@@ -46,7 +42,7 @@ public class MouseInputController : Singleton<MouseInputController> {
     public Vector2 GetMouseScreenCoords()
     {
         return Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, Input.mousePosition.y, -cameraHeight)
+            new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)
             );
     }
 }

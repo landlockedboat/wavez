@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraFollowPlayer : MonoBehaviour {
     [SerializeField]
-    float cameraHeight = 1f;
-    [SerializeField]
     float cameraSpeed = 3f;
     [SerializeField]
     float distFactor = 1f;
@@ -17,7 +15,7 @@ public class CameraFollowPlayer : MonoBehaviour {
         float deltaPos = (Vector2.Distance(playerPos, transform.position) * distFactor +
             cameraSpeed) * Time.deltaTime;
         Vector2 rawPos = Vector2.MoveTowards(transform.position, playerPos, deltaPos);
-        transform.position = new Vector3(rawPos.x, rawPos.y, cameraHeight);
+        transform.position = new Vector3(rawPos.x, rawPos.y, transform.position.z);
 
     }
 }

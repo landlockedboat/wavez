@@ -15,8 +15,10 @@ public class EnemyHealth : MonoBehaviour {
     {
         --currentHealth;
         if (currentHealth <= 0)
-            PhysicsController.Instance.RemovePhysicsObject(gameObject);
-            Destroy(gameObject);
+        {
+            gameObject.SendMessage("Kill");
+        }
+            
     }
 	
 	// Update is called once per frame

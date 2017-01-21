@@ -12,7 +12,7 @@ public class UIShootingPower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        text.text = "time = " + Shooting.Instance.CurrentBulletTime.ToString("F2");
+        text.text = "time = " + Shooting.Instance.CurrentBulletForce.ToString("F2");
 
     }
 }
