@@ -10,8 +10,8 @@ public class BulletLogic : MonoBehaviour {
 
 	public void Init (float _bulletTime) {        
         rigidbody = GetComponent<Rigidbody>();
-        bulletTime = _bulletTime;
-        rigidbody.AddForce(transform.right * Shooting.Instance.BulletForce);
+        bulletTime = 1;
+        rigidbody.AddForce(transform.right * Shooting.Instance.BulletForce * _bulletTime);
         StartCoroutine("Explode");
     }
 

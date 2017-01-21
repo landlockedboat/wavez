@@ -6,19 +6,33 @@ public class FollowPlayer : MonoBehaviour {
     [SerializeField]
     float speed = 5;
     [SerializeField]
+    float maxSpeed = 10;
+    float startingSpeed;
+    [SerializeField]
     float stunDuration = 2;
+    [SerializeField]
+    float speedInc = 2;
     bool paused = false;
+
+    private void Awake()
+    {
+        startingSpeed = speed;
+    }
 
 	void Update () {
         if (paused)
             return;
         Vector2 playerPos = PlayerController.Instance.PlayerPos;
+        speed += speedInc * Time.deltaTime;
+        if (speed > maxSpeed)
+            speed = maxSpeed;
         transform.position = Vector2.MoveTowards(transform.position, playerPos, speed * Time.deltaTime);
     }
 
     public void PauseBehaviour()
     {
         paused = true;
+        speed = startingSpeed;
     }
 
     public void ResumeBehaviour()

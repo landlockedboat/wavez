@@ -47,7 +47,7 @@ public class Shooting : Singleton<Shooting>
         }
     }
 
-    public float BulletTime
+    public float MaxBulletTime
     {
         get
         {

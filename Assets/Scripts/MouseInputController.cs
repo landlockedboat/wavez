@@ -9,6 +9,8 @@ public class MouseInputController : Singleton<MouseInputController> {
 
     UnityEvent onLeftMouseClick;
     UnityEvent onLeftMouseRelease;
+    [SerializeField]
+    float cameraHeight;
 
     void Start()
     {
@@ -44,13 +46,7 @@ public class MouseInputController : Singleton<MouseInputController> {
     public Vector2 GetMouseScreenCoords()
     {
         return Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)
-            );
-    }
-    public Vector3 GetMouseWorldCoords()
-    {
-        return Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)
+            new Vector3(Input.mousePosition.x, Input.mousePosition.y, -cameraHeight)
             );
     }
 }
