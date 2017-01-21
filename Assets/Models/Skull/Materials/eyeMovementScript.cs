@@ -5,7 +5,6 @@ using UnityEngine;
 public class eyeMovementScript : MonoBehaviour {
 
     private Rigidbody rb;
-    private float t = 0.0f;
     public float speed = 1.0f;
     public float movementDivisor = 1.0f;
     public float min = 1.0f;

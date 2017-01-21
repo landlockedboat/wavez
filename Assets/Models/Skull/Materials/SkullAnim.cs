@@ -11,7 +11,7 @@ public class SkullAnim : MonoBehaviour {
     private bool laughing = false;
 
     private Animator anim;
-    private AudioSource audio;
+    private new AudioSource audio;
 
     bool ded = false;
 

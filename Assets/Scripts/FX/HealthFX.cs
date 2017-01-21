@@ -11,13 +11,13 @@ public class HealthFX : MonoBehaviour {
     Color deadCol;
     bool ded = false;
 
-    EnemyHealth eh;
+    HealthManager eh;
     MeshRenderer rend;
     int maxHealth;
     int currHealth;
 	// Use this for initialization
 	void Awake() {
-        eh = transform.root.GetComponent<EnemyHealth>();
+        eh = transform.root.GetComponent<HealthManager>();
         rend = GetComponent<MeshRenderer>();
         maxHealth = eh.MaxHealth;
     }

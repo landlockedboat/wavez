@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : HealthManager {
+public class PlayerHealth : HealthManager {
 
-	public void Stun()
+	public void EnemyEmp()
     {
         DecrementHealth();
     }
