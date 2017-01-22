@@ -28,6 +28,7 @@ public class BulletLogic : MonoBehaviour {
         yield return new WaitForSeconds(bulletTime);
         EmpController.Instance.NewEmp("Stun", transform.position, Shooting.Instance.EmpForce,
             Shooting.Instance.EmpRadius);
+        CameraShake.Instance.ShakeIt(.3f, .75f);
         Destroy(gameObject);
     }
 	

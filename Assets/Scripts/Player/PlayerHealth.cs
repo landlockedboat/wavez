@@ -10,6 +10,7 @@ public class PlayerHealth : HealthManager {
 	public void EnemyEmp()
     {
         DecrementHealth();
+        CameraShake.Instance.ShakeIt(.5f, .5f);
     }
 
     public void Kill()
