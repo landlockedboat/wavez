@@ -12,7 +12,7 @@ public class PlayerHealth : HealthManager {
 	public void EnemyEmp()
     {
         DecrementHealth();
-        CameraShake.Instance.ShakeIt(.5f, .5f);
+        CameraShake.Instance.ShakeIt(.5f, 1f);
     }
 
     public void Kill()
