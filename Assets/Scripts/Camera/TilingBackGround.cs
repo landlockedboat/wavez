@@ -22,6 +22,7 @@ public class TilingBackGround : MonoBehaviour {
 
     void CreateBG()
     {
+        Debug.Log("Creating BG's at " + lastPos);
         foreach(GameObject obj in backs)
         {
             Destroy(obj);
@@ -64,22 +65,23 @@ public class TilingBackGround : MonoBehaviour {
     }
 	
 	void Update () {
-		if(lastPos.x - transform.position.x > bgSize/2)
+
+		if(lastPos.x - transform.position.x >= bgSize/2)
         {
             lastPos.x -= bgSize;
             CreateBG();
         }
-        if (lastPos.x - transform.position.x < -bgSize/2)
+        else if (lastPos.x - transform.position.x <= -bgSize/2)
         {
             lastPos.x += bgSize;
             CreateBG();
         }
-        if (lastPos.y - transform.position.y > bgSize/2)
+        else if(lastPos.y - transform.position.y >= bgSize/2)
         {
-            lastPos.x -= bgSize;
+            lastPos.y -= bgSize;
             CreateBG();
         }
-        if (lastPos.y - transform.position.y < -bgSize/2)
+        else if(lastPos.y - transform.position.y <= -bgSize/2)
         {
             lastPos.y += bgSize;
             CreateBG();

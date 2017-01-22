@@ -19,7 +19,6 @@ public class eyeMovementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         a += speed * dir * Time.deltaTime;
-        Debug.Log(rb.transform.position.x  + " " + a + " " + dir);
         if (a < min)
         {
             dir = -dir;

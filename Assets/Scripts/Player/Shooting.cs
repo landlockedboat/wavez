@@ -27,6 +27,13 @@ public class Shooting : Singleton<Shooting>
     [Header("Turret")]
     [SerializeField]
     Transform muzzle;
+
+    bool ded = false;
+
+    public void Kill()
+    {
+        ded = true;
+    }
     
 
     public float EmpForce
@@ -124,6 +131,9 @@ public class Shooting : Singleton<Shooting>
     }
 
     void Update () {
+
+        if (ded)
+            return;
 
         if (reloading)
         {

@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class LookAtMouse : MonoBehaviour {
 
+    bool ded = false;
+
+    public void Kill()
+    {
+        ded = true;
+    }
+
     void Update () {
+        if (ded)
+            return;
         Vector2 mousePos = MouseInputController.Instance.GetMouseScreenCoords();
         Vector2 actPos = transform.position;
 
