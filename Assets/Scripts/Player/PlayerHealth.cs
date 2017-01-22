@@ -7,6 +7,8 @@ public class PlayerHealth : HealthManager {
     GameObject cannon;
     [SerializeField]
     GameObject dedText;
+    [SerializeField]
+    int lifeHealed = 1;
 	public void EnemyEmp()
     {
         DecrementHealth();
@@ -18,5 +20,10 @@ public class PlayerHealth : HealthManager {
         cannon.SendMessage("Kill");
         dedText.SetActive(true);
         BossIndicator.Instance.Deactivate();
+    }
+
+    public void AddLife()
+    {
+        IncrementHealth(lifeHealed);
     }
 }

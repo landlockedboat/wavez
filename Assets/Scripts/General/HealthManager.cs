@@ -36,4 +36,12 @@ public class HealthManager : MonoBehaviour {
             gameObject.SendMessage("Kill", SendMessageOptions.DontRequireReceiver);
         }
     }
+    protected void IncrementHealth(int ammount)
+    {
+        currentHealth += ammount;
+        if (currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 }

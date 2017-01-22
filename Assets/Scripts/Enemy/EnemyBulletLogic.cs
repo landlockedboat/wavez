@@ -6,6 +6,8 @@ public class EnemyBulletLogic : MonoBehaviour {
 
     float bulletSpeed, empRadius, empForce;
     bool isInitialised = false;
+    [SerializeField]
+    float timeToLive = 5f;
 
     public void Init(float _bulletSpeed, float _empRadius, float _empForce)
     {
@@ -26,7 +28,7 @@ public class EnemyBulletLogic : MonoBehaviour {
 
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(EntitiesController.Instance.EnemyBulletsTimeToLive);
+        yield return new WaitForSeconds(timeToLive);
         Explode();
         
     }
