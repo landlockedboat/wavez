@@ -16,5 +16,6 @@ public class PlayerHealth : HealthManager {
     {
         cannon.SendMessage("Kill");
         dedText.SetActive(true);
+        BossIndicator.Instance.Deactivate();
     }
 }

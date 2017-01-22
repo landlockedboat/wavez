@@ -76,11 +76,11 @@ public class LevelGen : MonoBehaviour {
 
     void SpawnBoss()
     {
-        Debug.Log("B0ss");
         currentX = transform.position.x;
         currentY = transform.position.y;
         Vector2 pos = GenerateRandomPos();
-        Instantiate(b0ss, pos, Quaternion.identity);
+        GameObject bossObj = Instantiate(b0ss, pos, Quaternion.identity);
+        BossIndicator.Instance.Activate(bossObj.transform);
     }
 
     void SpawnEnemyTypeAt(Vector2 pos, int type)
