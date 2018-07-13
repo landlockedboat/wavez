@@ -7,7 +7,7 @@ public class ScreenGrab : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Application.CaptureScreenshot(Time.time.ToString("F0") + ".png", superSize);
+            ScreenCapture.CaptureScreenshot(Time.time.ToString("F0") + ".png", superSize);
         }
 	}
 }
